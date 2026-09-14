@@ -1,12 +1,12 @@
 interface MemberCardProps {
   name: string;
   role: string;
-  tasksCompleted: number;
+  tasksCompleted?: number;
   isActive: boolean;
   bio?: string;
 }
 
-function MemberCard({ name, role, tasksCompleted, isActive, bio }: MemberCardProps) {
+function MemberCard({ name, role, tasksCompleted = 0, isActive, bio }: MemberCardProps) {
   return (
     <div>
       <h3>{name}</h3>
