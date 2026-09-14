@@ -1,0 +1,18 @@
+/* Author: Veronicah */
+
+.member-card {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 1rem;
+}
+
+.member-name {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.member-role {
+  color: #555;
+}
