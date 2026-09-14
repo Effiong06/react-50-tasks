@@ -4,7 +4,7 @@ function TeamDashboard() {
   const [teamScore, setTeamScore] = useState<number>(0)
 
   const increaseScore = () => {
-    setTeamScore(teamScore + 1)
+    setTeamScore((prev) => prev + 1)
   }
 
   return (
