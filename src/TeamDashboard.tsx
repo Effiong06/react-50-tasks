@@ -28,6 +28,7 @@ function TeamDashboard() {
   // Task 42: array state for members
   const [members, setMembers] = useState<Member[]>(initialMembers);
 
+  // Author: Chiagoziem Eke
   // Task 48: which status to show — all members, only active, or only inactive
   const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all");
 
@@ -69,11 +70,13 @@ function TeamDashboard() {
     setNewMemberName("");
   };
 
+  // Author: Chiagoziem Eke
   // Task 45 & 46: remove a member by id, passed down as a typed callback prop
   const removeMember = (id: number) => {
     setMembers((prevMembers) => prevMembers.filter((member) => member.id !== id));
   };
 
+  // Author: Chiagoziem Eke
   // Task 47: flip a member's active status by id
   const toggleMemberActive = (id: number) => {
     setMembers((prevMembers) =>
@@ -83,6 +86,7 @@ function TeamDashboard() {
     );
   };
 
+  // Author: Chiagoziem Eke
   // Task 49: typed change handler for the search input
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -102,6 +106,8 @@ function TeamDashboard() {
       <h1>Team Dashboard</h1>
       <p>Track our group members, their roles, and progress.</p>
 
+      {/* Author: Chiagoziem Eke */}
+      {/* Task 48: All/Active/Inactive filter controls */}
       <div className="status-filter">
         <button onClick={() => setStatusFilter("all")} disabled={statusFilter === "all"}>
           All
@@ -114,6 +120,8 @@ function TeamDashboard() {
         </button>
       </div>
 
+      {/* Author: Chiagoziem Eke */}
+      {/* Task 49: controlled search input */}
       <input
         type="text"
         value={searchTerm}
@@ -141,9 +149,12 @@ function TeamDashboard() {
       {/* Task 44: confirms members list renders automatically*/}
       <p>Total members: {members.length}</p>
 
+      {/* Author: Chiagoziem Eke */}
       {/* Task 50: final integration check — filters, search, and the member list all agree */}
       {visibleMembers.length === 0 && <p>No members match the current filter and search.</p>}
 
+      {/* Author: Chiagoziem Eke */}
+      {/* Task 45-47: id, onRemove, and onToggleActive passed down to each MemberCard */}
       <div className="dashboard">
         {visibleMembers.map((member) => (
           <MemberCard

@@ -10,6 +10,7 @@ export interface MemberCardProps {
   bio?: string;
 }
 
+// Author: Chiagoziem Eke
 // Task 45 & 46: card also needs its id and a typed callback to remove itself
 // Task 47: plus a typed callback to toggle its active status
 interface MemberCardComponentProps extends MemberCardProps {
