@@ -12,6 +12,10 @@ function TeamDashboard() {
     setTeamScore((prev) => (prev > 0 ? prev - 1 : 0))
   }
 
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewMemberName(event.target.value)
+  }
+
   return (
     <div>
       <h1>Team Dashboard</h1>
@@ -23,6 +27,7 @@ function TeamDashboard() {
       <input
         type="text"
         value={newMemberName}
+        onChange={handleNameChange}
         placeholder="Enter new member name"
       />
     </div>
