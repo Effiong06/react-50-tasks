@@ -17,7 +17,8 @@ function TeamDashboard() {
   }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    // handled in task 40
+    event.preventDefault()
+    console.log('Submitted member name:', newMemberName)
   }
 
   return (
@@ -37,6 +38,8 @@ function TeamDashboard() {
         />
         <button type="submit">Add Member</button>
       </form>
+
+      {newMemberName && <p>Last submitted name: {newMemberName}</p>}
     </div>
   );
 }
