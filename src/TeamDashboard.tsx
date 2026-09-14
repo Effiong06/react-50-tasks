@@ -1,4 +1,7 @@
+// Author: Veronicah
+
 import MemberCard, { type MemberCardProps } from "./MemberCard";
+import "./TeamDashboard.css";
 
 const members: MemberCardProps[] = [
   { name: "Alice", role: "Frontend Developer", tasksCompleted: 8, isActive: true, bio: "Builds the user interface." },
@@ -11,16 +14,18 @@ function TeamDashboard() {
     <>
       <h1>Team Dashboard</h1>
       <p>Track our group members, their roles, and progress.</p>
-      {members.map((member) => (
-        <MemberCard
-          key={member.name}
-          name={member.name}
-          role={member.role}
-          tasksCompleted={member.tasksCompleted}
-          isActive={member.isActive}
-          bio={member.bio}
-        />
-      ))}
+      <div className="dashboard">
+        {members.map((member) => (
+          <MemberCard
+            key={member.name}
+            name={member.name}
+            role={member.role}
+            tasksCompleted={member.tasksCompleted}
+            isActive={member.isActive}
+            bio={member.bio}
+          />
+        ))}
+      </div>
     </>
   );
 }

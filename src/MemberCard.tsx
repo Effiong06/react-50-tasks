@@ -16,7 +16,7 @@ function MemberCard({ name, role, tasksCompleted = 0, isActive, bio }: MemberCar
       <h3 className="member-name">{name}</h3>
       <p className="member-role">Role: {role}</p>
       <p>Tasks completed: {tasksCompleted}</p>
-      <p>Status: {isActive ? "Active" : "Inactive"}</p>
+      <p style={{ fontWeight: "bold" }}>Status: {isActive ? "Active" : "Inactive"}</p>
       {bio && <p>{bio}</p>}
     </div>
   );
