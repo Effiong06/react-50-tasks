@@ -68,6 +68,15 @@ function TeamDashboard() {
     setMembers((prevMembers) => prevMembers.filter((member) => member.id !== id));
   };
 
+  // Task 47: flip a member's active status by id
+  const toggleMemberActive = (id: number) => {
+    setMembers((prevMembers) =>
+      prevMembers.map((member) =>
+        member.id === id ? { ...member, isActive: !member.isActive } : member
+      )
+    );
+  };
+
   return (
     <>
       <h1>Team Dashboard</h1>
@@ -103,6 +112,7 @@ function TeamDashboard() {
             isActive={member.isActive}
             bio={member.bio}
             onRemove={removeMember}
+            onToggleActive={toggleMemberActive}
           />
         ))}
       </div>
