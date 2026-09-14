@@ -19,6 +19,12 @@ function TeamDashboard() {
       <p>Current score: {teamScore}</p>
       <button onClick={increaseScore}>Increase Score</button>
       <button onClick={decreaseScore}>Decrease Score</button>
+
+      <input
+        type="text"
+        value={newMemberName}
+        placeholder="Enter new member name"
+      />
     </div>
   );
 }
