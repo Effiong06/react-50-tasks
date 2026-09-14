@@ -5,12 +5,13 @@ interface MemberCardProps {
   isActive: boolean;
 }
 
-function MemberCard({ name, role, tasksCompleted }: MemberCardProps) {
+function MemberCard({ name, role, tasksCompleted, isActive }: MemberCardProps) {
   return (
     <div>
       <h3>{name}</h3>
       <p>Role: {role}</p>
       <p>Tasks completed: {tasksCompleted}</p>
+      <p>Status: {isActive ? "Active" : "Inactive"}</p>
     </div>
   );
 }
