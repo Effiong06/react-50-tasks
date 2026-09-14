@@ -28,6 +28,9 @@ function TeamDashboard() {
   // Task 42: array state for members
   const [members, setMembers] = useState<Member[]>(initialMembers);
 
+  // Task 48: which status to show — all members, only active, or only inactive
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all");
+
   // Task 33 & 34: increase score using a functional update
   const increaseScore = () => {
     setTeamScore((prev) => prev + 1);
@@ -77,10 +80,29 @@ function TeamDashboard() {
     );
   };
 
+  // Task 48: only the members matching the current status filter
+  const visibleMembers = members.filter((member) => {
+    if (statusFilter === "active") return member.isActive;
+    if (statusFilter === "inactive") return !member.isActive;
+    return true;
+  });
+
   return (
     <>
       <h1>Team Dashboard</h1>
       <p>Track our group members, their roles, and progress.</p>
+
+      <div className="status-filter">
+        <button onClick={() => setStatusFilter("all")} disabled={statusFilter === "all"}>
+          All
+        </button>
+        <button onClick={() => setStatusFilter("active")} disabled={statusFilter === "active"}>
+          Active
+        </button>
+        <button onClick={() => setStatusFilter("inactive")} disabled={statusFilter === "inactive"}>
+          Inactive
+        </button>
+      </div>
 
       <section className="team-score">
         <p>Current score: {teamScore}</p>
@@ -102,7 +124,7 @@ function TeamDashboard() {
       <p>Total members: {members.length}</p>
 
       <div className="dashboard">
-        {members.map((member) => (
+        {visibleMembers.map((member) => (
           <MemberCard
             key={member.id}
             id={member.id}
