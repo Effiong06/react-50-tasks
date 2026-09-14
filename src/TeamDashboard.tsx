@@ -4,6 +4,12 @@ import { useState } from "react";
 import MemberCard, { type MemberCardProps } from "./MemberCard";
 import "./TeamDashboard.css";
 
+// Author: Norette
+// Task 41
+interface Member extends MemberCardProps {
+  id: number;
+}
+
 const members: MemberCardProps[] = [
   { name: "Alice", role: "Frontend Developer", tasksCompleted: 8, isActive: true, bio: "Builds the user interface." },
   { name: "Brian", role: "Backend Developer", isActive: false },
