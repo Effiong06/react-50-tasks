@@ -1,8 +1,9 @@
 function TeamDashboard() {
   return (
-    <div>
+    <>
       <h1>Team Dashboard</h1>
-    </div>
+      <p>Track our group members, their roles, and progress.</p>
+    </>
   );
 }
 
