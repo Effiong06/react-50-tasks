@@ -28,10 +28,6 @@ function TeamDashboard() {
   // Task 42: array state for members
   const [members, setMembers] = useState<Member[]>(initialMembers);
 
-  // Author: Norette
-  // Task 42: array state for members
-  const [members, setMembers] = useState<Member[]>(initialMembers);
-
   // Task 33 & 34: increase score using a functional update
   const increaseScore = () => {
     setTeamScore((prev) => prev + 1);
@@ -48,9 +44,23 @@ function TeamDashboard() {
   };
 
   // Task 39 & 40: typed form submission, prevent default, use the value
+  // Author: Norette
+  // Task 43: add the new member to state on submit
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Submitted member name:", newMemberName);
+
+    if (!newMemberName.trim()) return;
+
+    const newMember: Member = {
+      id: Date.now(),
+      name: newMemberName,
+      role: "Unassigned",
+      tasksCompleted: 0,
+      isActive: true,
+    };
+
+    setMembers((prevMembers) => [...prevMembers, newMember]);
+    setNewMemberName("");
   };
 
   return (
