@@ -16,6 +16,10 @@ function TeamDashboard() {
     setNewMemberName(event.target.value)
   }
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    // handled in task 40
+  }
+
   return (
     <div>
       <h1>Team Dashboard</h1>
@@ -24,12 +28,15 @@ function TeamDashboard() {
       <button onClick={increaseScore}>Increase Score</button>
       <button onClick={decreaseScore}>Decrease Score</button>
 
-      <input
-        type="text"
-        value={newMemberName}
-        onChange={handleNameChange}
-        placeholder="Enter new member name"
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={newMemberName}
+          onChange={handleNameChange}
+          placeholder="Enter new member name"
+        />
+        <button type="submit">Add Member</button>
+      </form>
     </div>
   );
 }
