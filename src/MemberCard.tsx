@@ -12,7 +12,7 @@ export interface MemberCardProps {
 
 function MemberCard({ name, role, tasksCompleted = 0, isActive, bio }: MemberCardProps) {
   return (
-    <div className="member-card">
+    <div className={`member-card ${isActive ? "active" : "inactive"}`}>
       <h3 className="member-name">{name}</h3>
       <p className="member-role">Role: {role}</p>
       <p>Tasks completed: {tasksCompleted}</p>
