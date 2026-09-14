@@ -1,0 +1,13 @@
+/* Author: Veronicah */
+
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .dashboard {
+    flex-direction: column;
+  }
+}
