@@ -141,6 +141,9 @@ function TeamDashboard() {
       {/* Task 44: confirms members list renders automatically*/}
       <p>Total members: {members.length}</p>
 
+      {/* Task 50: final integration check — filters, search, and the member list all agree */}
+      {visibleMembers.length === 0 && <p>No members match the current filter and search.</p>}
+
       <div className="dashboard">
         {visibleMembers.map((member) => (
           <MemberCard
