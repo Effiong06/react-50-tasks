@@ -63,6 +63,11 @@ function TeamDashboard() {
     setNewMemberName("");
   };
 
+  // Task 45 & 46: remove a member by id, passed down as a typed callback prop
+  const removeMember = (id: number) => {
+    setMembers((prevMembers) => prevMembers.filter((member) => member.id !== id));
+  };
+
   return (
     <>
       <h1>Team Dashboard</h1>
@@ -91,11 +96,13 @@ function TeamDashboard() {
         {members.map((member) => (
           <MemberCard
             key={member.id}
+            id={member.id}
             name={member.name}
             role={member.role}
             tasksCompleted={member.tasksCompleted}
             isActive={member.isActive}
             bio={member.bio}
+            onRemove={removeMember}
           />
         ))}
       </div>
