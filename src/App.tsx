@@ -2,6 +2,7 @@ import { useState } from 'react'
 
 function TeamDashboard() {
   const [teamScore, setTeamScore] = useState<number>(0)
+  const [newMemberName, setNewMemberName] = useState<string>('')
 
   const increaseScore = () => {
     setTeamScore((prev) => prev + 1)
