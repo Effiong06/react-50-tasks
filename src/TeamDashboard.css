@@ -13,6 +13,11 @@
   margin-bottom: 1rem;
 }
 
+.search-input {
+  display: block;
+  margin-bottom: 1rem;
+}
+
 .add-member-form {
   display: flex;
   gap: 0.5rem;

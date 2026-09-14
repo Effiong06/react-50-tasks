@@ -31,6 +31,9 @@ function TeamDashboard() {
   // Task 48: which status to show — all members, only active, or only inactive
   const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all");
 
+  // Task 49: controlled search input to filter members by name
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   // Task 33 & 34: increase score using a functional update
   const increaseScore = () => {
     setTeamScore((prev) => prev + 1);
@@ -80,12 +83,19 @@ function TeamDashboard() {
     );
   };
 
-  // Task 48: only the members matching the current status filter
-  const visibleMembers = members.filter((member) => {
-    if (statusFilter === "active") return member.isActive;
-    if (statusFilter === "inactive") return !member.isActive;
-    return true;
-  });
+  // Task 49: typed change handler for the search input
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Task 48 & 49: members matching both the status filter and the search term
+  const visibleMembers = members
+    .filter((member) => {
+      if (statusFilter === "active") return member.isActive;
+      if (statusFilter === "inactive") return !member.isActive;
+      return true;
+    })
+    .filter((member) => member.name.toLowerCase().includes(searchTerm.trim().toLowerCase()));
 
   return (
     <>
@@ -103,6 +113,14 @@ function TeamDashboard() {
           Inactive
         </button>
       </div>
+
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        placeholder="Search members by name"
+        className="search-input"
+      />
 
       <section className="team-score">
         <p>Current score: {teamScore}</p>
