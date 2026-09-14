@@ -4,18 +4,29 @@ import { useState } from "react";
 import MemberCard, { type MemberCardProps } from "./MemberCard";
 import "./TeamDashboard.css";
 
-const members: MemberCardProps[] = [
-  { name: "Alice", role: "Frontend Developer", tasksCompleted: 8, isActive: true, bio: "Builds the user interface." },
-  { name: "Brian", role: "Backend Developer", isActive: false },
-  { name: "Chantal", role: "UI Designer", tasksCompleted: 12, isActive: true, bio: "Designs layouts and styles." },
-];
+// Author: Norette
+// Task 41
+interface Member extends MemberCardProps {
+  id: number;
+}
 
+// Author: Norette
+// Task 42: adding id field to each object
+const initialMembers: Member[] = [
+  { id: 1, name: "Alice", role: "Frontend Developer", tasksCompleted: 8, isActive: true, bio: "Builds the user interface." },
+  { id: 2, name: "Brian", role: "Backend Developer", isActive: false },
+  { id: 3, name: "Chantal", role: "UI Designer", tasksCompleted: 12, isActive: true, bio: "Designs layouts and styles." },
+];
 function TeamDashboard() {
   // Task 31 & 32: teamScore state and display
   const [teamScore, setTeamScore] = useState<number>(0);
 
   // Task 36: string state for new member's name
   const [newMemberName, setNewMemberName] = useState<string>("");
+
+  // Author: Norette
+  // Task 42: array state for members
+  const [members, setMembers] = useState<Member[]>(initialMembers);
 
   // Task 33 & 34: increase score using a functional update
   const increaseScore = () => {
@@ -33,9 +44,23 @@ function TeamDashboard() {
   };
 
   // Task 39 & 40: typed form submission, prevent default, use the value
+  // Author: Norette
+  // Task 43: add the new member to state on submit
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Submitted member name:", newMemberName);
+
+    if (!newMemberName.trim()) return;
+
+    const newMember: Member = {
+      id: Date.now(),
+      name: newMemberName,
+      role: "Unassigned",
+      tasksCompleted: 0,
+      isActive: true,
+    };
+
+    setMembers((prevMembers) => [...prevMembers, newMember]);
+    setNewMemberName("");
   };
 
   return (
@@ -58,12 +83,14 @@ function TeamDashboard() {
         />
         <button type="submit">Add Member</button>
       </form>
-      {newMemberName && <p>Last submitted name: {newMemberName}</p>}
+      {/* Author: Norette */}
+      {/* Task 44: confirms members list renders automatically*/}
+      <p>Total members: {members.length}</p>
 
       <div className="dashboard">
         {members.map((member) => (
           <MemberCard
-            key={member.name}
+            key={member.id}
             name={member.name}
             role={member.role}
             tasksCompleted={member.tasksCompleted}
