@@ -28,6 +28,13 @@ function TeamDashboard() {
   // Task 42: array state for members
   const [members, setMembers] = useState<Member[]>(initialMembers);
 
+  // Author: Chiagoziem Eke
+  // Task 48: which status to show — all members, only active, or only inactive
+  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all");
+
+  // Task 49: controlled search input to filter members by name
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
   // Task 33 & 34: increase score using a functional update
   const increaseScore = () => {
     setTeamScore((prev) => prev + 1);
@@ -63,10 +70,65 @@ function TeamDashboard() {
     setNewMemberName("");
   };
 
+  // Author: Chiagoziem Eke
+  // Task 45 & 46: remove a member by id, passed down as a typed callback prop
+  const removeMember = (id: number) => {
+    setMembers((prevMembers) => prevMembers.filter((member) => member.id !== id));
+  };
+
+  // Author: Chiagoziem Eke
+  // Task 47: flip a member's active status by id
+  const toggleMemberActive = (id: number) => {
+    setMembers((prevMembers) =>
+      prevMembers.map((member) =>
+        member.id === id ? { ...member, isActive: !member.isActive } : member
+      )
+    );
+  };
+
+  // Author: Chiagoziem Eke
+  // Task 49: typed change handler for the search input
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  // Task 48 & 49: members matching both the status filter and the search term
+  const visibleMembers = members
+    .filter((member) => {
+      if (statusFilter === "active") return member.isActive;
+      if (statusFilter === "inactive") return !member.isActive;
+      return true;
+    })
+    .filter((member) => member.name.toLowerCase().includes(searchTerm.trim().toLowerCase()));
+
   return (
     <>
       <h1>Team Dashboard</h1>
       <p>Track our group members, their roles, and progress.</p>
+
+      {/* Author: Chiagoziem Eke */}
+      {/* Task 48: All/Active/Inactive filter controls */}
+      <div className="status-filter">
+        <button onClick={() => setStatusFilter("all")} disabled={statusFilter === "all"}>
+          All
+        </button>
+        <button onClick={() => setStatusFilter("active")} disabled={statusFilter === "active"}>
+          Active
+        </button>
+        <button onClick={() => setStatusFilter("inactive")} disabled={statusFilter === "inactive"}>
+          Inactive
+        </button>
+      </div>
+
+      {/* Author: Chiagoziem Eke */}
+      {/* Task 49: controlled search input */}
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        placeholder="Search members by name"
+        className="search-input"
+      />
 
       <section className="team-score">
         <p>Current score: {teamScore}</p>
@@ -87,15 +149,24 @@ function TeamDashboard() {
       {/* Task 44: confirms members list renders automatically*/}
       <p>Total members: {members.length}</p>
 
+      {/* Author: Chiagoziem Eke */}
+      {/* Task 50: final integration check — filters, search, and the member list all agree */}
+      {visibleMembers.length === 0 && <p>No members match the current filter and search.</p>}
+
+      {/* Author: Chiagoziem Eke */}
+      {/* Task 45-47: id, onRemove, and onToggleActive passed down to each MemberCard */}
       <div className="dashboard">
-        {members.map((member) => (
+        {visibleMembers.map((member) => (
           <MemberCard
             key={member.id}
+            id={member.id}
             name={member.name}
             role={member.role}
             tasksCompleted={member.tasksCompleted}
             isActive={member.isActive}
             bio={member.bio}
+            onRemove={removeMember}
+            onToggleActive={toggleMemberActive}
           />
         ))}
       </div>
