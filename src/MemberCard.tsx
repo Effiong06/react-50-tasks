@@ -2,6 +2,7 @@ interface MemberCardProps {
   name: string;
   role: string;
   tasksCompleted: number;
+  isActive: boolean;
 }
 
 function MemberCard({ name, role, tasksCompleted }: MemberCardProps) {
