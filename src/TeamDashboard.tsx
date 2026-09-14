@@ -83,7 +83,9 @@ function TeamDashboard() {
         />
         <button type="submit">Add Member</button>
       </form>
-      {newMemberName && <p>Last submitted name: {newMemberName}</p>}
+      {/* Author: Norette */}
+      {/* Task 44: confirms members list renders automatically*/}
+      <p>Total members: {members.length}</p>
 
       <div className="dashboard">
         {members.map((member) => (
