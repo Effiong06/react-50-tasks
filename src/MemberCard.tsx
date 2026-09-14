@@ -1,4 +1,4 @@
-interface MemberCardProps {
+export interface MemberCardProps {
   name: string;
   role: string;
   tasksCompleted?: number;
